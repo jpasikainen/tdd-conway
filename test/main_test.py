@@ -79,3 +79,8 @@ class TestSimulation(unittest.TestCase):
         app = main.Main("glider.rle", 1)
         app.simulate()
         self.assertEqual(app.get_cell(1, 0), "b")
+    
+    def test_less_than_two_neighbors_dies(self):
+        app = main.Main("glider.rle", 1)
+        app.simulate()
+        self.assertEqual(app.get_cell(1, 2), "o")
