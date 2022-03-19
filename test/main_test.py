@@ -31,5 +31,5 @@ class TestFileParsingBlinker(unittest.TestCase):
         self.assertEqual(self.app.get_height(), 1)
     
     def test_file_pattern_parsed(self):
-        self.assertEqual(self.app.get_pattern(), [["b", "o", "b"], ["b", "b", "o"], ["o", "o", "o"]])
+        self.assertEqual(self.app.get_pattern(), [["o", "o", "o"]])
 
