@@ -46,16 +46,16 @@ class TestFileParsingGosper(unittest.TestCase):
         self.assertEqual(self.app.get_width(), 36)
         self.assertEqual(self.app.get_height(), 9)
     
-    # def test_file_pattern_parsed(self):
-    #     self.assertEqual(self.app.get_pattern(), [
-    #         ["........................O"],
-    #         ["......................O.O"],
-    #         ["............OO......OO............OO"],
-    #         ["...........O...O....OO............OO"],
-    #         ["OO........O.....O...OO"],
-    #         ["OO........O...O.OO....O.O"],
-    #         ["..........O.....O.......O"],
-    #         ["...........O...O"],
-    #         ["............OO"]
-    #     ])
+    def test_file_pattern_parsed(self):
+        self.assertEqual(self.app.get_pattern(), [
+            "bbbbbbbbbbbbbbbbbbbbbbbbobbbbbbbbbbb",
+            "bbbbbbbbbbbbbbbbbbbbbbobobbbbbbbbbbb",
+            "bbbbbbbbbbbboobbbbbboobbbbbbbbbbbboo",
+            "bbbbbbbbbbbobbbobbbboobbbbbbbbbbbboo",
+            "oobbbbbbbbobbbbbobbboobbbbbbbbbbbbbb",
+            "oobbbbbbbbobbboboobbbbobobbbbbbbbbbb",
+            "bbbbbbbbbbobbbbbobbbbbbbobbbbbbbbbbb",
+            "bbbbbbbbbbbobbbobbbbbbbbbbbbbbbbbbbb",
+            "bbbbbbbbbbbboobbbbbbbbbbbbbbbbbbbbbb"
+        ])
     
