@@ -74,3 +74,8 @@ class TestSimulation(unittest.TestCase):
         # hor + diag
         count = main.Main("glider.rle", 1).get_neighbors(1, 2)
         self.assertEqual(count, 3)
+    
+    def test_less_than_two_neighbors_dies(self):
+        app = main.Main("glider.rle", 1)
+        app.simulate()
+        self.assertEqual(app.get_cell(1, 0), "b")

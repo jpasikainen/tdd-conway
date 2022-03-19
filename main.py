@@ -94,6 +94,19 @@ class Main:
         
         return count
 
+    def get_cell(self, x, y):
+        return self.PATTERN[y][x]
+    
+    def simulate(self):
+        new_pattern = self.PATTERN
+        for y in range(self.get_height()):
+            for x in range(self.get_width()):
+                if self.get_neighbors(x, y) < 2:
+                    line = new_pattern[y]
+                    new_pattern[y] = line[:x] + "b" + line[x+1:]
+        self.PATTERN = new_pattern
+
+
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         iterations = sys.argv.pop()
