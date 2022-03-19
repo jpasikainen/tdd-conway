@@ -73,21 +73,21 @@ class Main:
 
     def get_neighbors(self, x, y):
         count = 0
-        if x-1 > 0 and self.PATTERN[y][x-1] == "o":
+        if x-1 >= 0 and self.PATTERN[y][x-1] == "o":
             count += 1
         if x+1 < self.get_width() and self.PATTERN[y][x+1] == "o":
             count += 1
-        if y-1 > 0 and self.PATTERN[y-1][x] == "o":
+        if y-1 >= 0 and self.PATTERN[y-1][x] == "o":
             count += 1
         if y+1 < self.get_height() and self.PATTERN[y+1][x] == "o":
             count += 1
 
         # Diagonals
-        if x-1 > 0 and y-1 > 0 and self.PATTERN[y-1][x-1] == "o":
+        if x-1 >= 0 and y-1 >= 0 and self.PATTERN[y-1][x-1] == "o":
             count += 1
-        if x+1 < self.get_width() and y-1 > 0 and self.PATTERN[y-1][x+1] == "o":
+        if x+1 < self.get_width() and y-1 >= 0 and self.PATTERN[y-1][x+1] == "o":
             count += 1
-        if x-1 > 0 and y+1 < self.get_height() and self.PATTERN[y+1][x-1] == "o":
+        if x-1 >= 0 and y+1 < self.get_height() and self.PATTERN[y+1][x-1] == "o":
             count += 1
         if x+1 < self.get_width() and y+1 < self.get_height() and self.PATTERN[y+1][x+1] == "o":
             count += 1
@@ -98,5 +98,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         iterations = sys.argv.pop()
         file = sys.argv.pop()
-        Main(file, iterations).get_width()
 

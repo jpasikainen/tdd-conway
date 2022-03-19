@@ -65,5 +65,12 @@ class TestFileParsingGosper(unittest.TestCase):
 
 class TestSimulation(unittest.TestCase):
     def test_neighbors_are_counted_correctly(self):
+        # horizontal
         count = main.Main("glider.rle", 1).get_neighbors(0, 0)
         self.assertEqual(count, 1)
+        # diagonal
+        count = main.Main("glider.rle", 1).get_neighbors(1, 0)
+        self.assertEqual(count, 1)
+        # hor + diag
+        count = main.Main("glider.rle", 1).get_neighbors(1, 2)
+        self.assertEqual(count, 3)
