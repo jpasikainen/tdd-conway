@@ -17,6 +17,10 @@ class TestFileParsingGlider(unittest.TestCase):
     def test_file_pattern_parsed(self):
         self.assertEqual(self.app.get_pattern(), ["bob", "bbo", "ooo"])
 
+# .O.
+# ..O
+# OOO
+
 class TestFileParsingBlinker(unittest.TestCase):
     app = None
     def setUp(self):
@@ -58,4 +62,8 @@ class TestFileParsingGosper(unittest.TestCase):
             "bbbbbbbbbbbobbbobbbbbbbbbbbbbbbbbbbb",
             "bbbbbbbbbbbboobbbbbbbbbbbbbbbbbbbbbb"
         ])
-    
+
+class TestSimulation(unittest.TestCase):
+    def test_neighbors_are_counted_correctly(self):
+        count = main.Main("glider.rle", 1).get_neighbors(0, 0)
+        self.assertEqual(count, 1)
