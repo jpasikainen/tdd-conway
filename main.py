@@ -101,7 +101,8 @@ class Main:
         new_pattern = self.PATTERN
         for y in range(self.get_height()):
             for x in range(self.get_width()):
-                if self.get_neighbors(x, y) < 2:
+                nbs = self.get_neighbors(x, y)
+                if nbs < 2 or nbs > 3:
                     line = new_pattern[y]
                     new_pattern[y] = line[:x] + "b" + line[x+1:]
         self.PATTERN = new_pattern
