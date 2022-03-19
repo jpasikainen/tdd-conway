@@ -44,6 +44,11 @@ class Main:
                 for j in range(reps):
                     self.PATTERN[i].append(char)
                 reps = 1
+        
+        i = 0
+        for line in self.PATTERN:
+            self.PATTERN[i] = "".join(line)
+            i += 1
 
     def get_width(self):
         return self.X

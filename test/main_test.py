@@ -15,7 +15,7 @@ class TestFileParsingGlider(unittest.TestCase):
         self.assertEqual(self.app.get_height(), 3)
     
     def test_file_pattern_parsed(self):
-        self.assertEqual(self.app.get_pattern(), [["b", "o", "b"], ["b", "b", "o"], ["o", "o", "o"]])
+        self.assertEqual(self.app.get_pattern(), ["bob", "bbo", "ooo"])
 
 class TestFileParsingBlinker(unittest.TestCase):
     app = None
@@ -31,7 +31,7 @@ class TestFileParsingBlinker(unittest.TestCase):
         self.assertEqual(self.app.get_height(), 1)
     
     def test_file_pattern_parsed(self):
-        self.assertEqual(self.app.get_pattern(), [["o", "o", "o"]])
+        self.assertEqual(self.app.get_pattern(), ["ooo"])
 
 class TestFileParsingGosper(unittest.TestCase):
     app = None
@@ -45,4 +45,17 @@ class TestFileParsingGosper(unittest.TestCase):
     def test_file_parses_x_and_y(self):
         self.assertEqual(self.app.get_width(), 36)
         self.assertEqual(self.app.get_height(), 9)
+    
+    # def test_file_pattern_parsed(self):
+    #     self.assertEqual(self.app.get_pattern(), [
+    #         ["........................O"],
+    #         ["......................O.O"],
+    #         ["............OO......OO............OO"],
+    #         ["...........O...O....OO............OO"],
+    #         ["OO........O.....O...OO"],
+    #         ["OO........O...O.OO....O.O"],
+    #         ["..........O.....O.......O"],
+    #         ["...........O...O"],
+    #         ["............OO"]
+    #     ])
     
