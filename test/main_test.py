@@ -1,7 +1,7 @@
 import unittest
 import main
 
-class TestStringMethods(unittest.TestCase):
+class TestFileParsing(unittest.TestCase):
 
     app = None
     def setUp(self):
@@ -17,3 +17,4 @@ class TestStringMethods(unittest.TestCase):
     
     def test_file_pattern_parsed(self):
         self.assertEqual(self.app.get_pattern(), [["b", "o", "b"], ["b", "b", "o"], ["o", "o", "o"]])
+
