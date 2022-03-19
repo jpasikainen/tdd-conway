@@ -33,3 +33,11 @@ class TestFileParsingBlinker(unittest.TestCase):
     def test_file_pattern_parsed(self):
         self.assertEqual(self.app.get_pattern(), [["o", "o", "o"]])
 
+class TestFileParsingGosper(unittest.TestCase):
+    app = None
+    def setUp(self):
+        self.app = main.Main("gosper.rle", 1)
+
+    def test_main_takes_file_and_iterations(self):
+        self.assertEqual(self.app.FILE, "gosper.rle")
+        self.assertEqual(self.app.ITERATIONS, 1)
