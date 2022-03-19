@@ -41,3 +41,8 @@ class TestFileParsingGosper(unittest.TestCase):
     def test_main_takes_file_and_iterations(self):
         self.assertEqual(self.app.FILE, "gosperglidergun.rle")
         self.assertEqual(self.app.ITERATIONS, 1)
+
+    def test_file_parses_x_and_y(self):
+        self.assertEqual(self.app.get_width(), 36)
+        self.assertEqual(self.app.get_height(), 9)
+    
