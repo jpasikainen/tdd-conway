@@ -116,3 +116,19 @@ class TestSimulation(unittest.TestCase):
     def test_glider_simulated_4_iter(self):
         app = main.Main("glider.rle", 4)
         self.assertEqual(app.get_pattern(), ["bbbb", "bbob", "bbbo", "booo"])
+    
+    def test_gosper_glider_gun_1_iter(self):
+        app = main.Main("gosperglidergun.rle", 1)
+        self.assertEqual(app.get_pattern(), 
+            [
+                'bbbbbbbbbbbbbbbbbbbbbbbobbbbbbbbbbbb',
+                'bbbbbbbbbbbbbbbbbbbbbobobbbbbbbbbbbb',
+                'bbbbbbbbbbbbobbbbbbbobobbbbbbbbbbboo',
+                'bbbbbbbbbbboobbbbbbobbobbbbbbbbbbboo',
+                'oobbbbbbbboobbbboobbobobbbbbbbbbbbbb',
+                'oobbbbbbbooobbbboobbbobobbbbbbbbbbbb',
+                'bbbbbbbbbboobbbboobbbbbobbbbbbbbbbbb',
+                'bbbbbbbbbbboobbbbbbbbbbbbbbbbbbbbbbb',
+                'bbbbbbbbbbbbobbbbbbbbbbbbbbbbbbbbbbb'
+            ]
+        )
