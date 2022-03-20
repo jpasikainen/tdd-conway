@@ -100,3 +100,7 @@ class TestSimulation(unittest.TestCase):
     def test_blinker_simulated_2_iter(self):
         app = main.Main("blinker.rle", 2)
         self.assertEqual(app.get_pattern(), ["bbb", "ooo", "bbb"])
+    
+    def test_blinker_simulated_2_iter(self):
+        app = main.Main("blinker.rle", 10)
+        self.assertEqual(app.get_pattern(), ["bbb", "ooo", "bbb"])
