@@ -104,3 +104,11 @@ class TestSimulation(unittest.TestCase):
     def test_blinker_simulated_2_iter(self):
         app = main.Main("blinker.rle", 10)
         self.assertEqual(app.get_pattern(), ["bbb", "ooo", "bbb"])
+    
+    def test_glider_simulated_1_iter(self):
+        app = main.Main("glider.rle", 1)
+        self.assertEqual(app.get_pattern(), ["bbb", "obo", "boo", "bob"])
+    
+    def test_glider_simulated_2_iter(self):
+        app = main.Main("glider.rle", 2)
+        self.assertEqual(app.get_pattern(), ["bbb", "bbo", "obo", "boo"])
