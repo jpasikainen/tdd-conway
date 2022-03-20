@@ -62,46 +62,53 @@ class Main:
             for _ in range(diff):
                 self.PATTERN[-1] += "b"
         
-    def get_width(self):
-        return self.X
+    def get_width(self, pattern = None):
+        if pattern == None:
+            return self.X
+        return len(pattern[0])
 
-    def get_height(self):
-        return self.Y
+    def get_height(self, pattern = None):
+        if pattern == None:
+            return self.Y
+        return len(pattern)
 
     def get_pattern(self):
         return self.PATTERN
 
-    def get_neighbors(self, x, y):
-        if x < 0 or x >= self.get_width() or y < 0 or y >= self.get_height():
+    def get_neighbors(self, x, y, pattern = None):
+        if pattern == None: pattern = self.PATTERN
+
+        if x < 0 or x >= self.get_width(pattern) or y < 0 or y >= self.get_height(pattern):
             return 0
         
         count = 0
-        if x-1 >= 0 and self.PATTERN[y][x-1] == "o":
+        if x-1 >= 0 and pattern[y][x-1] == "o":
             count += 1
-        if x+1 < self.get_width() and self.PATTERN[y][x+1] == "o":
+        if x+1 < self.get_width(pattern) and pattern[y][x+1] == "o":
             count += 1
-        if y-1 >= 0 and self.PATTERN[y-1][x] == "o":
+        if y-1 >= 0 and pattern[y-1][x] == "o":
             count += 1
-        if y+1 < self.get_height() and self.PATTERN[y+1][x] == "o":
+        if y+1 < self.get_height(pattern) and pattern[y+1][x] == "o":
             count += 1
 
         # Diagonals
-        if x-1 >= 0 and y-1 >= 0 and self.PATTERN[y-1][x-1] == "o":
+        if x-1 >= 0 and y-1 >= 0 and pattern[y-1][x-1] == "o":
             count += 1
-        if x+1 < self.get_width() and y-1 >= 0 and self.PATTERN[y-1][x+1] == "o":
+        if x+1 < self.get_width(pattern) and y-1 >= 0 and pattern[y-1][x+1] == "o":
             count += 1
-        if x-1 >= 0 and y+1 < self.get_height() and self.PATTERN[y+1][x-1] == "o":
+        if x-1 >= 0 and y+1 < self.get_height(pattern) and pattern[y+1][x-1] == "o":
             count += 1
-        if x+1 < self.get_width() and y+1 < self.get_height() and self.PATTERN[y+1][x+1] == "o":
+        if x+1 < self.get_width(pattern) and y+1 < self.get_height(pattern) and pattern[y+1][x+1] == "o":
             count += 1
         
         return count
 
-    def get_cell(self, x, y):
-        if x < 0 or x >= self.get_width() or y < 0 or y >= self.get_height():
+    def get_cell(self, x, y, pattern = None):
+        if pattern == None: pattern = self.PATTERN
+        if x < 0 or x >= self.get_width(pattern) or y < 0 or y >= self.get_height(pattern):
             return "b"
         
-        return self.PATTERN[y][x]
+        return pattern[y][x]
     
     def simulate(self):
         self.X += 2
@@ -115,16 +122,17 @@ class Main:
         empty_row = ["".join(["b" for _ in range(self.get_width())])]
         self.PATTERN = empty_row + self.PATTERN + empty_row
         #print(self.PATTERN)
+        original = self.PATTERN.copy()
 
         for y in range(self.get_height()):
             for x in range(self.get_width()):
                 #print(len(self.PATTERN[y]), self.get_width(), self.PATTERN[y])
-                nbs = self.get_neighbors(x, y)
+                nbs = self.get_neighbors(x, y, original)
                 if nbs < 2 or nbs > 3:
                     line = self.PATTERN[y]
                     self.PATTERN[y] = line[:x] + "b" + line[x+1:]
                     continue
-                if self.get_cell(x, y) == "b" and nbs == 3:
+                if self.get_cell(x, y, original) == "b" and nbs == 3:
                     line = self.PATTERN[y]
                     self.PATTERN[y] = line[:x] + "o" + line[x+1:]
         

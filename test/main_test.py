@@ -63,7 +63,7 @@ class TestFileParsingGosper(unittest.TestCase):
             "bbbbbbbbbbbboobbbbbbbbbbbbbbbbbbbbbb"
         ])
 
-class TestSimulation(unittest.TestCase):
+class TestSimulationRules(unittest.TestCase):
     def test_neighbors_are_counted_correctly(self):
         # horizontal
         count = main.Main("glider.rle", 1).get_neighbors(0, 0)
@@ -94,5 +94,10 @@ class TestSimulation(unittest.TestCase):
     def test_dead_with_three_neighbors_becomes_alive(self):
         app = main.Main("blinker.rle", 1)
         app.simulate()
-        print(app.get_pattern())
         self.assertEqual(app.get_cell(1, 0), "o")
+
+class TestSimulation(unittest.TestCase):
+    def test_blinker_simulated_1_iter(self):
+        app = main.Main("blinker.rle", 1)
+        app.simulate()
+        self.assertEqual(app.get_pattern(), ["bob", "bob", "bob"])
