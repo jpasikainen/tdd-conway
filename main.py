@@ -62,6 +62,9 @@ class Main:
             for _ in range(diff):
                 self.PATTERN[-1] += "b"
         
+        for _ in range(self.ITERATIONS):
+            self.simulate()
+        
     def get_width(self, pattern = None):
         if pattern == None:
             return self.X

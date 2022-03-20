@@ -77,27 +77,32 @@ class TestSimulationRules(unittest.TestCase):
     
     def test_less_than_two_neighbors_dies(self):
         app = main.Main("glider.rle", 1)
-        app.simulate()
+        
         self.assertEqual(app.get_cell(1, 0), "b")
     
     def test_less_than_two_neighbors_dies(self):
         app = main.Main("glider.rle", 1)
-        app.simulate()
+        
         self.assertEqual(app.get_cell(1, 2), "o")
 
     def test_more_than_three_neighbors_dies(self):
         app = main.Main("gosperglidergun.rle", 1)
         self.assertEqual(app.get_cell(21, 3), "o")
-        app.simulate()
+        
         self.assertEqual(app.get_cell(21, 3), "b")
     
     def test_dead_with_three_neighbors_becomes_alive(self):
         app = main.Main("blinker.rle", 1)
-        app.simulate()
+        
         self.assertEqual(app.get_cell(1, 0), "o")
 
 class TestSimulation(unittest.TestCase):
     def test_blinker_simulated_1_iter(self):
         app = main.Main("blinker.rle", 1)
-        app.simulate()
+        
         self.assertEqual(app.get_pattern(), ["bob", "bob", "bob"])
+    
+    # def test_blinker_simulated_2_iter(self):
+    #     app = main.Main("blinker.rle", 1)
+        
+    #     self.assertEqual(app.get_pattern(), ["bob", "bob", "bob"])
