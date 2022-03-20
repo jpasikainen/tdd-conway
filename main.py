@@ -155,6 +155,10 @@ class Main:
             self.X -= 1
         
         #print(self.PATTERN)
+    
+    def reformat(self):
+        xyr = "x = %d, y = %d, rule = B3/S23" % (self.get_width(), self.get_height())
+        return xyr
 
 
 if __name__ == "__main__":

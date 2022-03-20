@@ -148,3 +148,7 @@ class TestSimulation(unittest.TestCase):
                 'bbbbbbbbbbobbbbbbbobbbbbbbbbbbbbbbbb'
             ]
         )
+
+class TestFormatter(unittest.TestCase):
+    def test_formatter_returns_correct_x_y_rule_line(self):
+        self.assertEqual(main.Main("glider.rle", 0).reformat(), "x = 3, y = 3, rule = B3/S23")
