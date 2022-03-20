@@ -75,11 +75,6 @@ class TestSimulation(unittest.TestCase):
         count = main.Main("glider.rle", 1).get_neighbors(1, 2)
         self.assertEqual(count, 3)
     
-    def test_neighbor_count_works_when_outside_pattern(self):
-        # pattern's 0,0 = origo of the board
-        count = main.Main("blinker.rle", 1).get_neighbors(-1, 0)
-        self.assertEqual(count, 1)
-
     def test_less_than_two_neighbors_dies(self):
         app = main.Main("glider.rle", 1)
         app.simulate()
@@ -96,7 +91,8 @@ class TestSimulation(unittest.TestCase):
         app.simulate()
         self.assertEqual(app.get_cell(21, 3), "b")
     
-    # def test_dead_with_three_neighbors_becomes_alive(self):
-    #     app = main.Main("blinker.rle", 1)
-    #     app.simulate()
-    #     self.assertEqual(app.get_cell(21, 3), "b")
+    def test_dead_with_three_neighbors_becomes_alive(self):
+        app = main.Main("blinker.rle", 1)
+        app.simulate()
+        print(app.get_pattern())
+        self.assertEqual(app.get_cell(1, 0), "o")

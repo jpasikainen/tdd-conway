@@ -72,6 +72,9 @@ class Main:
         return self.PATTERN
 
     def get_neighbors(self, x, y):
+        if x < 0 or x >= self.get_width() or y < 0 or y >= self.get_height():
+            return 0
+        
         count = 0
         if x-1 >= 0 and self.PATTERN[y][x-1] == "o":
             count += 1
@@ -95,17 +98,52 @@ class Main:
         return count
 
     def get_cell(self, x, y):
+        if x < 0 or x >= self.get_width() or y < 0 or y >= self.get_height():
+            return "b"
+        
         return self.PATTERN[y][x]
     
     def simulate(self):
-        new_pattern = self.PATTERN
+        self.X += 2
+        self.Y += 2
+        # Add frame to the pattern
+        i = 0
+        for row in self.PATTERN:
+            self.PATTERN[i] = "b" + row + "b"
+            #print(len(self.PATTERN[i]), self.get_width(), self.PATTERN[i])
+            i += 1
+        empty_row = ["".join(["b" for _ in range(self.get_width())])]
+        self.PATTERN = empty_row + self.PATTERN + empty_row
+        #print(self.PATTERN)
+
         for y in range(self.get_height()):
             for x in range(self.get_width()):
+                #print(len(self.PATTERN[y]), self.get_width(), self.PATTERN[y])
                 nbs = self.get_neighbors(x, y)
                 if nbs < 2 or nbs > 3:
-                    line = new_pattern[y]
-                    new_pattern[y] = line[:x] + "b" + line[x+1:]
-        self.PATTERN = new_pattern
+                    line = self.PATTERN[y]
+                    self.PATTERN[y] = line[:x] + "b" + line[x+1:]
+                    continue
+                if self.get_cell(x, y) == "b" and nbs == 3:
+                    line = self.PATTERN[y]
+                    self.PATTERN[y] = line[:x] + "o" + line[x+1:]
+        
+       
+        # Clean up frame if no changes
+        if len(set(self.PATTERN[0])) == 1:
+            self.PATTERN = self.PATTERN[1:]
+            self.Y -= 1
+        if len(set(self.PATTERN[-1])) == 1:
+            self.PATTERN = self.PATTERN[:-1]
+            self.Y -= 1
+        if len(set([i[0] for i in self.PATTERN])) == 1:
+            self.PATTERN = [i[1:] for i in self.PATTERN]
+            self.X -= 1
+        if len(set([i[-1] for i in self.PATTERN])) == 1:
+            self.PATTERN = [i[:-1] for i in self.PATTERN]
+            self.X -= 1
+        
+        #print(self.PATTERN)
 
 
 if __name__ == "__main__":
