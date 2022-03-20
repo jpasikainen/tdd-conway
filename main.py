@@ -121,16 +121,13 @@ class Main:
         i = 0
         for row in self.PATTERN:
             self.PATTERN[i] = "b" + row + "b"
-            #print(len(self.PATTERN[i]), self.get_width(), self.PATTERN[i])
             i += 1
         empty_row = ["".join(["b" for _ in range(self.get_width())])]
         self.PATTERN = empty_row + self.PATTERN + empty_row
-        #print(self.PATTERN)
         original = self.PATTERN.copy()
 
         for y in range(self.get_height()):
             for x in range(self.get_width()):
-                #print(len(self.PATTERN[y]), self.get_width(), self.PATTERN[y])
                 nbs = self.get_neighbors(x, y, original)
                 if nbs < 2 or nbs > 3:
                     line = self.PATTERN[y]
@@ -154,8 +151,6 @@ class Main:
         if len(set([i[-1] for i in self.PATTERN])) == 1:
             self.PATTERN = [i[:-1] for i in self.PATTERN]
             self.X -= 1
-        
-        #print(self.PATTERN)
     
     def reformat(self):
         xyr = "x = %d, y = %d, rule = B3/S23" % (self.get_width(), self.get_height())
