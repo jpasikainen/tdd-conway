@@ -175,6 +175,7 @@ class Main:
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        iterations = sys.argv.pop()
+        iterations = int(sys.argv.pop())
         file = sys.argv.pop()
+        print(Main(file, iterations).reformat())
 
