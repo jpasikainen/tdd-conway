@@ -1,4 +1,5 @@
 import sys
+from itertools import groupby
 
 class Main:
     FILE = ""
@@ -158,7 +159,18 @@ class Main:
     
     def reformat(self):
         xyr = "x = %d, y = %d, rule = B3/S23" % (self.get_width(), self.get_height())
-        return xyr
+        pattern = ""
+
+        for line in self.PATTERN:
+            code = ["".join(v) for k, v in groupby(line)]
+            for x in code:
+                count = len(x)
+                if count == 1:
+                    pattern += x
+                else:
+                    pattern += "%d%s" % (count, x[0])
+            pattern += "$"
+        return xyr + "\n" + pattern[:-1] + "!"
 
 
 if __name__ == "__main__":

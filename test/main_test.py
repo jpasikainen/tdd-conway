@@ -151,9 +151,11 @@ class TestSimulation(unittest.TestCase):
 
 class TestFormatter(unittest.TestCase):
     def test_formatter_returns_correct_x_y_rule_line(self):
-        self.assertEqual(main.Main("glider.rle", 0).reformat(), "x = 3, y = 3, rule = B3/S23")
-        self.assertEqual(main.Main("blinker.rle", 0).reformat(), "x = 3, y = 1, rule = B3/S23")
-        self.assertEqual(main.Main("gosperglidergun.rle", 0).reformat(), "x = 36, y = 9, rule = B3/S23")
+        self.assertEqual(main.Main("glider.rle", 0).reformat().split("\n")[0], "x = 3, y = 3, rule = B3/S23")
+        self.assertEqual(main.Main("blinker.rle", 0).reformat().split("\n")[0], "x = 3, y = 1, rule = B3/S23")
+        self.assertEqual(main.Main("gosperglidergun.rle", 0).reformat().split("\n")[0], "x = 36, y = 9, rule = B3/S23")
     
     def test_formatter_returns_correct_pattern(self):
-        pass
+        self.assertEqual(main.Main("glider.rle", 0).reformat().split("\n")[1], "bob$2bo$3o!")
+        self.assertEqual(main.Main("blinker.rle", 0).reformat().split("\n")[1], "3o!")
+        self.assertEqual(main.Main("gosperglidergun.rle", 0).reformat().split("\n")[1], "24bo11b$22bobo11b$12b2o6b2o12b2o$11bo3bo4b2o12b2o$2o8bo5bo3b2o14b$2o8bo3bob2o4bobo11b$10bo5bo7bo11b$11bo3bo20b$12b2o22b!")
